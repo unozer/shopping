@@ -1,4 +1,4 @@
-import { Component, input, output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output, ViewEncapsulation } from '@angular/core';
 import { Product } from '../product';
 
 @Component({
@@ -7,7 +7,8 @@ import { Product } from '../product';
   imports: [],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductDetailComponent {
   product = input.required<Product>();
@@ -16,5 +17,9 @@ export class ProductDetailComponent {
 
   addToCart() {
    this.added.emit(this.product()); 
+  }
+
+  get productTitle() {
+    return this.product().title;
   }
 }
