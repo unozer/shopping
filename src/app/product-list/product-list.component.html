@@ -5,8 +5,8 @@
 }
 
 <ul class="pill-group">
-    @for (product of products; track product.id) {
-        <li class="pill">{{product.title}}</li>
+    @for (product of products; track product.id; let i = $index) {
+        <li class="pill">{{i}}. {{product.title}}</li>
     } @empty {
         <p>No Products found!</p>
     }
