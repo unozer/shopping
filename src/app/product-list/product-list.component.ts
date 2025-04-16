@@ -19,7 +19,7 @@ export class ProductListComponent {
 
   selectedProduct: Product | undefined;
 
-  onAdded() {
-    alert(`${this.selectedProduct?.title} Product added to cart!`)
+  onAdded(product: Product) {
+    alert(`${product.title} Product added to cart!`)
   }
 }

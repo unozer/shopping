@@ -11,9 +11,9 @@ import { Product } from '../product';
 export class ProductDetailComponent {
   product = input.required<Product>();
 
-  added = output();
+  added = output<Product>();
 
   addToCart() {
-   this.added.emit(); 
+   this.added.emit(this.product()); 
   }
 }
