@@ -9,5 +9,5 @@ import { Product } from '../product';
   styleUrl: './product-detail.component.scss'
 })
 export class ProductDetailComponent {
-  product = input<Product>();
+  product = input.required<Product>();
 }
