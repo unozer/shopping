@@ -20,9 +20,7 @@
 </ul>
 
 @if (selectedProduct) {
-    <p>Product selected:
-        <strong>{{selectedProduct.title}}</strong>
-    </p>
+    <app-product-detail [product]="selectedProduct"></app-product-detail>
 } @else {
     <p>No Product selected!</p>
 }
