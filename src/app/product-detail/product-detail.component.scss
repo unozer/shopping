@@ -1,0 +1,11 @@
+button {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 0;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: grey;
+}
