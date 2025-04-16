@@ -2,10 +2,12 @@
 
 @if (products.length > 0) {
     <h1>{{products.length}} Products</h1>
-} @else if (products.length > 100) {
-    <span>
-        Click <a>here</a> to see more products.
-    </span>
-} @else {
-    <h1>No Products found!</h1>
 }
+
+<ul class="pill-group">
+    @for (product of products; track product.id) {
+        <li class="pill">{{product.title}}</li>
+    } @empty {
+        <p>No Products found!</p>
+    }
+</ul>

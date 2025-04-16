@@ -9,5 +9,10 @@ import { Product } from '../product';
   styleUrl: './product-list.component.scss'
 })
 export class ProductListComponent {
-  products: Product[] = [];
+  products: Product[] = [
+    { id: 1, title: 'Keyboard'},
+    { id: 2, title: 'Microphone'},
+    { id: 3, title: 'Webcam'},
+    { id: 4, title: 'Tablet'}
+  ];
 }
