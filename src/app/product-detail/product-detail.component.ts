@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, ViewEncapsulation } from '@angular/core';
 import { Product } from '../product';
 
 @Component({
@@ -6,7 +6,8 @@ import { Product } from '../product';
   standalone: true,
   imports: [],
   templateUrl: './product-detail.component.html',
-  styleUrl: './product-detail.component.scss'
+  styleUrl: './product-detail.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
 export class ProductDetailComponent {
   product = input.required<Product>();
