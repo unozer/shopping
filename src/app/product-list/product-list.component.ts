@@ -10,13 +10,11 @@ import { Product } from '../product';
 })
 export class ProductListComponent {
   products: Product[] = [
-
+    { id: 1, title: 'Keyboard'},
+    { id: 2, title: 'Microphone'},
+    { id: 3, title: 'Webcam'},
+    { id: 4, title: 'Tablet'}
   ];
 
-  isLiked: boolean = true;
-
-  currentStyles = {
-    color: 'red',
-    with: '100px'
-  };
+  selectedProduct: Product | undefined;
 }

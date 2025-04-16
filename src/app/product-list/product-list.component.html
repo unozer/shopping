@@ -6,7 +6,7 @@
 
 <ul class="pill-group">
     @for (product of products; track product.id; let i = $index) {
-        <li class="pill">
+        <li class="pill" (click)="selectedProduct = product">
             @switch (product.title) {
                 @case ('Keyboard') { ⌨️ }
                 @case ('Microphone') { 🎤 }
@@ -15,6 +15,14 @@
             {{i}}. {{product.title}}
         </li>
     } @empty {
-        <p [style]="currentStyles">No Products found!</p>
+        <p>No Products found!</p>
     }
 </ul>
+
+@if (selectedProduct) {
+    <p>Product selected:
+        <strong>{{selectedProduct.title}}</strong>
+    </p>
+} @else {
+    <p>No Product selected!</p>
+}
