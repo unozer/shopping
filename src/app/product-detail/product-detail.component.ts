@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output, ViewEncapsulation, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output, ViewEncapsulation, OnInit, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { Product } from '../product';
 
 @Component({
@@ -10,14 +10,23 @@ import { Product } from '../product';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, OnChanges {
 
   constructor() { 
-    console.log('Product:', this.product())
+    console.log('<Constructor> Product:', this.product())
+  }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    const product = changes['product'];
+    if (!product.isFirstChange()) { 
+      const oldValue = product.previousValue;
+      const newValue = product.currentValue;
+      console.log('<ngOnChanges> Product changed from', oldValue, 'to', newValue);
+    }
   }
 
   ngOnInit(): void {
-    console.log('Product:', this.product())
+    console.log('<ngOnInit> Product:', this.product())
   }
 
   product = input<Product>();
