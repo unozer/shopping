@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, input, output, ViewEncapsulation, OnInit, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { Product } from '../product';
-import { CommonModule } from '@angular/common';
+import { CurrencyPipe, KeyValuePipe, LowerCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CurrencyPipe, KeyValuePipe, LowerCasePipe],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss',
   encapsulation: ViewEncapsulation.None,
