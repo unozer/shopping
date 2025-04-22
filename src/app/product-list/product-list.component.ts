@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Product } from '../product';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import { SortPipe } from '../pipes/sort.pipe';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [ProductDetailComponent],
+  imports: [ProductDetailComponent, SortPipe],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })
