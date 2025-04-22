@@ -1,6 +1,11 @@
 <div>
     <p> Selected:
-        <strong>{{productTitle}}</strong>
+        <strong>{{product()!.title}}</strong>
     </p>
+
+    <p> Price:
+        <strong>{{product()!.price | currency:'EUR'}}</strong>
+    </p>
+
     <button (click)="addToCart()">🛒 Add to cart</button>
 </div>
