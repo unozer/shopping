@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
-import { FavoritesService } from '../favorites.service';
+import { favoritesFactory } from '../favorites';
 
 @Component({
   selector: 'app-favorites',
@@ -11,7 +11,7 @@ import { FavoritesService } from '../favorites.service';
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.scss',
   providers: [
-    { provide: ProductsService, useClass: FavoritesService },
+    { provide: ProductsService, useFactory: favoritesFactory(true) },
   ],
 })
 export class FavoritesComponent implements OnInit {
