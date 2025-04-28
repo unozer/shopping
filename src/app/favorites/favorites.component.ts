@@ -1,14 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component, Host, OnInit, Optional } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
+import { FavoritesService } from '../favorites.service';
 
 @Component({
   selector: 'app-favorites',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './favorites.component.html',
-  styleUrl: './favorites.component.scss'
+  styleUrl: './favorites.component.scss',
+  providers: [
+    { provide: ProductsService, useClass: FavoritesService },
+  ],
 })
 export class FavoritesComponent implements OnInit {
 
@@ -18,6 +22,6 @@ export class FavoritesComponent implements OnInit {
     this.products = this.productsService.getProducts();
   }
 
-  constructor(@Optional() @Host() private productsService: ProductsService) {
+  constructor(private productsService: ProductsService) {
   }
 }
