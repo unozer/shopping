@@ -10,12 +10,24 @@ import { APP_SETTINGS, appSettings } from './app.settings';
   imports: [RouterOutlet, ProductListComponent, CopyrightDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  providers: [
-    { provide: APP_SETTINGS, useValue: appSettings },
-  ],
+  providers: [{ provide: APP_SETTINGS, useValue: appSettings }],
 })
 export class AppComponent {
   title = 'shopping';
 
   settings = inject(APP_SETTINGS);
+
+  constructor() {
+    this.changeTitle(this.setTitle);
+  }
+
+  private setTitle = () => {
+    this.title = this.settings.title;
+  };
+
+  private changeTitle(callback: Function) {
+    setTimeout(() => {
+      callback();
+    }, 2000);
+  };
 }
