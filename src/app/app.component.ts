@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal, Signal, computed } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { from, Observable, of } from 'rxjs';
 import { ProductListComponent } from './product-list/product-list.component';
@@ -20,7 +20,7 @@ import { KeyLoggerComponent } from './key-logger/key-logger.component';
   providers: [{ provide: APP_SETTINGS, useValue: appSettings }],
 })
 export class AppComponent {
-  title = 'shopping';
+  title: Signal<string> = signal('');
 
   title$ = new Observable<void>((observer) => {
     setInterval(() => {
@@ -30,12 +30,16 @@ export class AppComponent {
 
   settings = inject(APP_SETTINGS);
 
+  currentDate = signal(new Date());
+
   constructor() {
     this.title$.subscribe(this.setTitle);
   }
 
   private setTitle = () => {
-    const timestamp = new Date();
-    this.title = `${this.settings.title} - ${timestamp}`;
+    this.currentDate.set(new Date());
+    this.title = computed(() => {
+      return `${this.settings.title} - ${this.currentDate()}`;
+    });
   };
 }
