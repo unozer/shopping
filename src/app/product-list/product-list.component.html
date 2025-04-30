@@ -1,11 +1,11 @@
 <p>product-list works!</p>
 
-@if ((products$ | async )!.length > 0) {
-    <h1>{{(products$ | async )!.length}} Products</h1>
+@if (products().length > 0) {
+    <h1>{{products().length}} Products</h1>
 }
 
 <ul class="pill-group">
-    @for (product of (products$ | async )! | sort:'price'; track product.id; let i = $index) {
+    @for (product of products() | sort:'price'; track product.id; let i = $index) {
         <li class="pill" (click)="selectedProduct = product">
             {{ product.title }} - {{ product.price }}
         </li>
