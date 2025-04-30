@@ -18,7 +18,7 @@ export class AppComponent {
   settings = inject(APP_SETTINGS);
 
   constructor() {
-    this.changeTitle(this.setTitle);
+    this.onComplete().then(this.setTitle);
   }
 
   private setTitle = () => {
@@ -30,4 +30,12 @@ export class AppComponent {
       callback();
     }, 2000);
   };
+
+  private onComplete() {
+    return new Promise<void>(resolve => {
+      setTimeout(() => {
+        resolve();
+      }, 2000);
+    });
+  }
 }
