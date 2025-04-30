@@ -27,17 +27,21 @@ export class AppComponent {
   settings = inject(APP_SETTINGS);
 
   constructor() {
-    this.title$.subscribe(this.setTitle)
-
-    const values$ = of(1, 2, 3);
-    values$.subscribe(value => console.log(value));
-
-    const valuesFromArray$ = from(['a', 'b', 'c']);
-    valuesFromArray$.subscribe(value => console.log(value));
+    //this.title$.subscribe(this.setTitle)
+    const complete$ = from(this.onComplete());
+    complete$.subscribe(this.setTitle);
   }
 
   private setTitle = () => {
     const timestamp = new Date();
     this.title = `${this.settings.title} - ${timestamp}`;
   };
+  
+  private onComplete() {
+    return new Promise<void>(resolve => {
+      setInterval(() => {
+        resolve();
+      }, 2000);
+    });
+  }
 }
