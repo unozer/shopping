@@ -4,11 +4,12 @@ import { Observable } from 'rxjs';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CopyrightDirective } from './directives/copyright.directive';
 import { APP_SETTINGS, appSettings } from './app.settings';
+import { KeyLoggerComponent } from './key-logger/key-logger.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ProductListComponent, CopyrightDirective],
+  imports: [RouterOutlet, ProductListComponent, CopyrightDirective, KeyLoggerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   providers: [{ provide: APP_SETTINGS, useValue: appSettings }],
