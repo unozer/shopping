@@ -1,4 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Product } from '../product';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { SortPipe } from '../pipes/sort.pipe';
@@ -11,7 +12,9 @@ import { ProductsService } from '../products.service';
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnDestroy {
+
+  private productsSub: Subscription | undefined;
 
   private productsService = inject(ProductsService);
 
@@ -27,11 +30,16 @@ export class ProductListComponent implements OnInit {
     this.getProducts();
   }
 
+  ngOnDestroy(): void {
+    this.productsSub?.unsubscribe();
+  }
+
   constructor() {
   }
 
   private getProducts() {
-    this.productsService.getProducts().subscribe(products => {
+    this.productsSub = this.productsService.getProducts()
+    .subscribe(products => {
       this.products = products;
     });
   }
