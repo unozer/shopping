@@ -9,16 +9,20 @@ import { KeyLoggerComponent } from './key-logger/key-logger.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ProductListComponent, CopyrightDirective, KeyLoggerComponent],
+  imports: [
+    RouterOutlet,
+    ProductListComponent,
+    CopyrightDirective,
+    KeyLoggerComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   providers: [{ provide: APP_SETTINGS, useValue: appSettings }],
 })
 export class AppComponent {
-
   title = 'shopping';
 
-  title$ = new Observable<void>(observer => {
+  title$ = new Observable<void>((observer) => {
     setInterval(() => {
       observer.next();
     }, 2000);
@@ -27,21 +31,11 @@ export class AppComponent {
   settings = inject(APP_SETTINGS);
 
   constructor() {
-    //this.title$.subscribe(this.setTitle)
-    const complete$ = from(this.onComplete());
-    complete$.subscribe(this.setTitle);
+    this.title$.subscribe(this.setTitle);
   }
 
   private setTitle = () => {
     const timestamp = new Date();
     this.title = `${this.settings.title} - ${timestamp}`;
   };
-  
-  private onComplete() {
-    return new Promise<void>(resolve => {
-      setInterval(() => {
-        resolve();
-      }, 2000);
-    });
-  }
 }
