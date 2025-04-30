@@ -22,18 +22,13 @@ export class AppComponent {
   }
 
   private setTitle = () => {
-    this.title = this.settings.title;
-  };
-
-  private changeTitle(callback: Function) {
-    setTimeout(() => {
-      callback();
-    }, 2000);
+    const timestamp = new Date();
+    this.title = `${this.settings.title} - ${timestamp}`;
   };
 
   private onComplete() {
     return new Promise<void>(resolve => {
-      setTimeout(() => {
+      setInterval(() => {
         resolve();
       }, 2000);
     });
