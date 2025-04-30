@@ -1,6 +1,6 @@
-import { Component, OnInit, inject, DestroyRef } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { AsyncPipe } from '@angular/common';
+import { Observable } from 'rxjs';
+import { Component, OnInit, inject } from '@angular/core';
 import { Product } from '../product';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { SortPipe } from '../pipes/sort.pipe';
@@ -9,19 +9,17 @@ import { ProductsService } from '../products.service';
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [ProductDetailComponent, SortPipe],
+  imports: [ProductDetailComponent, SortPipe, AsyncPipe],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })
 export class ProductListComponent implements OnInit {
 
-  private destroyRef = inject(DestroyRef);
-
   private productsService = inject(ProductsService);
 
-  products: Product[] = [];
+  products$: Observable<Product[]> | undefined;
 
-  selectedProduct: Product | undefined = this.products[0];
+  selectedProduct: Product | undefined;
 
   onAdded(product: Product) {
     alert(`${product.title} Product added to cart!`)
@@ -35,10 +33,6 @@ export class ProductListComponent implements OnInit {
   }
 
   private getProducts() {
-    this.productsService.getProducts().pipe(
-      takeUntilDestroyed(this.destroyRef) // Automatically unsubscribe when the component is destroyed
-    ).subscribe(products => {
-      this.products = products;
-    });
+    this.products$ = this.productsService.getProducts();
   }
 }
