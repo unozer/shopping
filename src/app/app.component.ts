@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CopyrightDirective } from './directives/copyright.directive';
 import { APP_SETTINGS, appSettings } from './app.settings';
@@ -13,24 +14,23 @@ import { APP_SETTINGS, appSettings } from './app.settings';
   providers: [{ provide: APP_SETTINGS, useValue: appSettings }],
 })
 export class AppComponent {
+
   title = 'shopping';
+
+  title$ = new Observable<void>(observer => {
+    setInterval(() => {
+      observer.next();
+    }, 2000);
+  });
 
   settings = inject(APP_SETTINGS);
 
   constructor() {
-    this.onComplete().then(this.setTitle);
+    this.title$.subscribe(this.setTitle)
   }
 
   private setTitle = () => {
     const timestamp = new Date();
     this.title = `${this.settings.title} - ${timestamp}`;
   };
-
-  private onComplete() {
-    return new Promise<void>(resolve => {
-      setInterval(() => {
-        resolve();
-      }, 2000);
-    });
-  }
 }
