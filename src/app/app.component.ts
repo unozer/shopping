@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Observable } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CopyrightDirective } from './directives/copyright.directive';
 import { APP_SETTINGS, appSettings } from './app.settings';
@@ -28,6 +28,12 @@ export class AppComponent {
 
   constructor() {
     this.title$.subscribe(this.setTitle)
+
+    const values$ = of(1, 2, 3);
+    values$.subscribe(value => console.log(value));
+
+    const valuesFromArray$ = from(['a', 'b', 'c']);
+    valuesFromArray$.subscribe(value => console.log(value));
   }
 
   private setTitle = () => {
