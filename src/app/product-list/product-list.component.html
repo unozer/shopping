@@ -22,7 +22,7 @@
 
 @if (selectedProduct) {
     <app-product-detail 
-        [product]="selectedProduct"
+        [id]="selectedProduct.id"
         (added)="onAdded($event)"
     ></app-product-detail>
 } @else {

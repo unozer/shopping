@@ -1,15 +1,17 @@
-<div>
-    <p> Selected:
-        <strong>{{product()!.title}}</strong>
-    </p>
+@if (product$ | async; as product) {
+    <div>
+        <p> Selected:
+            <strong>{{product.title}}</strong>
+        </p>
 
-    <p> Price:
-        <strong>{{product()!.price | currency:'EUR'}}</strong>
-    </p>
+        <p> Price:
+            <strong>{{product.price | currency:'EUR'}}</strong>
+        </p>
 
-    <p class="pill-group">
-        {{product()!.category}}
-    </p>
+        <p class="pill-group">
+            {{product.category}}
+        </p>
 
-    <button (click)="addToCart()">🛒 Add to cart</button>
-</div>
+        <button (click)="addToCart()">🛒 Add to cart</button>
+    </div>
+}

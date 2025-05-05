@@ -1,44 +1,32 @@
-import { ChangeDetectionStrategy, Component, input, output, ViewEncapsulation, OnInit, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, input, output, OnChanges } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { Observable } from 'rxjs';
 import { Product } from '../product';
-import { CurrencyPipe, KeyValuePipe, LowerCasePipe } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CurrencyPipe, KeyValuePipe, LowerCasePipe],
+  imports: [CurrencyPipe, AsyncPipe],
   templateUrl: './product-detail.component.html',
-  styleUrl: './product-detail.component.scss',
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './product-detail.component.scss'
 })
-export class ProductDetailComponent implements OnInit, OnChanges {
+export class ProductDetailComponent implements OnChanges {
 
-  constructor() { 
-    console.log('<Constructor> Product:', this.product())
-  }
+  constructor(private productService: ProductsService) {}
   
-  ngOnChanges(changes: SimpleChanges): void {
-    const product = changes['product'];
-    if (!product.isFirstChange()) { 
-      const oldValue = product.previousValue;
-      const newValue = product.currentValue;
-      console.log('<ngOnChanges> Product changed from', oldValue, 'to', newValue);
-    }
+  ngOnChanges(): void {
+    this.product$ = this.productService.getProduct(this.id()!);
   }
 
-  ngOnInit(): void {
-    console.log('<ngOnInit> Product:', this.product())
-  }
-
-  product = input<Product>();
+  id = input<number>();
 
   added = output<Product>();
 
-  addToCart() {
-   this.added.emit(this.product()!); 
-  }
+  product$: Observable<Product> | undefined;
 
-  get productTitle() {
-    return this.product()!.title;
+  addToCart() {
+
   }
 }
