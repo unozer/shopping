@@ -5,6 +5,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { CopyrightDirective } from './directives/copyright.directive';
 import { APP_SETTINGS, appSettings } from './app.settings';
 import { KeyLoggerComponent } from './key-logger/key-logger.component';
+import { AuthComponent } from './auth/auth.component';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { KeyLoggerComponent } from './key-logger/key-logger.component';
     ProductListComponent,
     CopyrightDirective,
     KeyLoggerComponent,
+    AuthComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

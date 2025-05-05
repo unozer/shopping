@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Product } from '../product';
 import { CurrencyPipe } from '@angular/common';
 import { ProductsService } from '../products.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -14,7 +15,7 @@ import { ProductsService } from '../products.service';
 })
 export class ProductDetailComponent implements OnChanges {
 
-  constructor(private productService: ProductsService) {}
+  constructor(private productService: ProductsService, public authService: AuthService) {}
   
   ngOnChanges(): void {
     this.product$ = this.productService.getProduct(this.id()!);

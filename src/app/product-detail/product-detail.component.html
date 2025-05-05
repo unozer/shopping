@@ -15,9 +15,12 @@
         {{product.category}}
     </p>
 
-    <div>
-        <button (click)="remove(product)">🗑️ Delete Product</button>
-        <button (click)="addToCart()">🛒 Add to cart</button>
-    </div>
+    @if (authService.isLoggedIn()) {
+        <div>
+            <button (click)="remove(product)">🗑️ Delete Product</button>
+            
+                <button (click)="addToCart()">🛒 Add to cart</button>
+        </div>
+    }
 </div>
 }
