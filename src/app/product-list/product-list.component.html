@@ -19,11 +19,11 @@
     }
 </ul>
 
-
 @if (selectedProduct) {
     <app-product-detail 
         [id]="selectedProduct.id"
         (added)="onAdded($event)"
+        (deleted)="selectedProduct = undefined"
     ></app-product-detail>
 } @else {
     <p>No Product selected!</p>

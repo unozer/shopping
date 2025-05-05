@@ -1,20 +1,23 @@
 @if (product$ | async; as product) {
+<div>
+    <p> Selected:
+        <strong>{{product.title}}</strong>
+    </p>
+
+    <p> Price:
+        <strong>{{product.price | currency:'EUR'}}</strong>
+    </p>
+
+    <input placeholder="New Price" #price type="number" />
+    <button (click)="changePrice(product, price.value)">Update Price</button>
+
+    <p class="pill-group">
+        {{product.category}}
+    </p>
+
     <div>
-        <p> Selected:
-            <strong>{{product.title}}</strong>
-        </p>
-
-        <p> Price:
-            <strong>{{product.price | currency:'EUR'}}</strong>
-        </p>
-
-        <input placeholder="New Price" #price type="number" />
-        <button (click)="changePrice(product, price.value)">Update Price</button>
-
-        <p class="pill-group">
-            {{product.category}}
-        </p>
-
+        <button (click)="remove(product)">🗑️ Delete Product</button>
         <button (click)="addToCart()">🛒 Add to cart</button>
     </div>
+</div>
 }

@@ -22,6 +22,8 @@ export class ProductDetailComponent implements OnChanges {
 
   id = input<number>();
 
+  deleted = output();
+
   added = output<Product>();
 
   product$: Observable<Product> | undefined;
@@ -32,5 +34,11 @@ export class ProductDetailComponent implements OnChanges {
 
   changePrice(product: Product, price: string) {
     this.productService.updateProduct(product.id, Number(price)).subscribe();
+  }
+
+  remove(product: Product) {
+    this.productService.deleteProduct(product.id).subscribe(() => {
+      this.deleted.emit();
+    });
   }
 }
