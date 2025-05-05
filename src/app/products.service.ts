@@ -30,4 +30,13 @@ export class ProductsService {
     const product = this.products.find((p) => p.id === id);
     return of(product!);
   }
+
+  addProduct(newProduct: Partial<Product>): Observable<Product> {
+    return this.http.post<Product>(this.productsUrl, newProduct).pipe(
+      map((product) => {
+        this.products.push(product);
+        return product;
+      })
+    );
+  }
 }
