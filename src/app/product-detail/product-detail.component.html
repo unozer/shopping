@@ -7,11 +7,9 @@
         <strong>{{product()!.price | currency:'EUR'}}</strong>
     </p>
 
-    @for (cat of product()!.categories | keyvalue; track cat.key) {
-        <p class="pill-group">
-            {{cat.value | lowercase}}
-        </p>
-    }
+    <p class="pill-group">
+        {{product()!.category}}
+    </p>
 
     <button (click)="addToCart()">🛒 Add to cart</button>
 </div>

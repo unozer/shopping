@@ -7,7 +7,12 @@
 <ul class="pill-group">
     @for (product of products() | sort:'price'; track product.id; let i = $index) {
         <li class="pill" (click)="selectedProduct = product">
-            {{ product.title }} - {{ product.price }}
+            @switch (product.category) {
+                @case ('jewelery') { 💍 }
+                @case ('electronics') { ⌨️ }
+                @default { 🏷️ }
+            }
+            {{ product.title }}
         </li>
     } @empty {
         <p>No Products found!</p>
