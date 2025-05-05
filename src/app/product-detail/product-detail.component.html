@@ -8,6 +8,9 @@
             <strong>{{product.price | currency:'EUR'}}</strong>
         </p>
 
+        <input placeholder="New Price" #price type="number" />
+        <button (click)="changePrice(product, price.value)">Update Price</button>
+
         <p class="pill-group">
             {{product.category}}
         </p>

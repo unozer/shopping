@@ -29,4 +29,8 @@ export class ProductDetailComponent implements OnChanges {
   addToCart() {
 
   }
+
+  changePrice(product: Product, price: string) {
+    this.productService.updateProduct(product.id, Number(price)).subscribe();
+  }
 }
