@@ -18,6 +18,8 @@ export class ProductDetailComponent implements OnInit {
 
   product$: Observable<Product> | undefined;
 
+  id = input<string>();
+
   constructor(
     private productService: ProductsService, 
     public authService: AuthService,
@@ -26,11 +28,7 @@ export class ProductDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.product$ = this.route.paramMap.pipe(
-      switchMap((params) => {
-        return this.productService.getProduct(Number(params.get('id')));
-      }
-    ));
+    this.product$ = this.productService.getProduct(Number(this.id()!));
   }
 
   addToCart() {}
