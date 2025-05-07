@@ -5,11 +5,15 @@ import { ProductCreateComponent } from './product-create/product-create.componen
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { authGuard } from './auth.guard';
 import { checkoutGuard } from './checkout.guard';
+import { productsResolver } from './products.resolver';
 
 export const routes: Routes = [
     { path: 'products/new', component: ProductCreateComponent },
     { path: 'products/:id', component: ProductDetailComponent },
-    { path: 'products', component: ProductListComponent },
+    { path: 'products', 
+        component: ProductListComponent,
+        resolve: { products: productsResolver } 
+    },
     { path: 'cart', 
         component: CartComponent, 
         canActivate: [authGuard],

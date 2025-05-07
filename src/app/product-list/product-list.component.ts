@@ -1,10 +1,9 @@
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Component } from '@angular/core';
 import { RouterLink, ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { of, switchMap } from 'rxjs';
 import { Product } from '../product';
 import { SortPipe } from '../pipes/sort.pipe';
-import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-product-list',
@@ -16,10 +15,8 @@ import { ProductsService } from '../products.service';
 export class ProductListComponent {
 
   products = toSignal(
-    this.route.queryParamMap.pipe(
-      switchMap(params => {
-        return this.productService.getProducts(Number(params.get('limit')));
-      })
+    this.route.data.pipe(
+      switchMap(data => of(data['products']))
     )
   );
 
@@ -30,7 +27,6 @@ export class ProductListComponent {
   }
 
   constructor(
-    private productService: ProductsService, 
     private route: ActivatedRoute
   ) {}
 }
