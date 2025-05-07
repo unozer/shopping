@@ -9,7 +9,11 @@ export const routes: Routes = [
     { path: 'products/new', component: ProductCreateComponent },
     { path: 'products/:id', component: ProductDetailComponent },
     { path: 'products', component: ProductListComponent },
-    { path: 'cart', component: CartComponent, canActivate: [authGuard] },
+    { path: 'cart', 
+        component: CartComponent, 
+        canActivate: [authGuard],
+        canDeactivate: [() => confirm('You have pending items. Do you want to leave?')]
+    },
     { path: '', redirectTo: 'products', pathMatch: 'full' },
     { path: '**', redirectTo: 'products' } // Wildcard route for a 404 page
 ];
