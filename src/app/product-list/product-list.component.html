@@ -1,13 +1,13 @@
 <p>product-list works!</p>
 
-@if (products().length > 0) {
-    <h1>{{products().length}} Products</h1>
+@if (products()!.length > 0) {
+    <h1>{{products()!.length}} Products</h1>
 
     <a routerLink="new">Add Product</a>
 }
 
 <ul class="pill-group">
-    @for (product of products() | sort:'id'; track product.id; let i = $index) {
+    @for (product of products()! | sort:'id'; track product.id; let i = $index) {
         <li class="pill" (click)="selectedProduct = product">
             @switch (product.category) {
                 @case ('jewelery') { 💍 }

@@ -1,27 +1,36 @@
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterLink, ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs';
 import { Product } from '../product';
-import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { SortPipe } from '../pipes/sort.pipe';
 import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [ProductDetailComponent, SortPipe, RouterLink],
+  imports: [SortPipe, RouterLink],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })
 export class ProductListComponent {
 
-  products = toSignal(inject(ProductsService).getProducts(), { 
-    initialValue: [] 
-  });
+  products = toSignal(
+    this.route.queryParamMap.pipe(
+      switchMap(params => {
+        return this.productService.getProducts(Number(params.get('limit')));
+      })
+    )
+  );
 
   selectedProduct: Product | undefined;
 
   onAdded(product: Product) {
     alert(`${product.title} Product added to cart!`)
   }
+
+  constructor(
+    private productService: ProductsService, 
+    private route: ActivatedRoute
+  ) {}
 }
