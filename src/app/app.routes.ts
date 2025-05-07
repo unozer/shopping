@@ -4,6 +4,7 @@ import { CartComponent } from './cart/cart.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { authGuard } from './auth.guard';
+import { checkoutGuard } from './checkout.guard';
 
 export const routes: Routes = [
     { path: 'products/new', component: ProductCreateComponent },
@@ -12,7 +13,7 @@ export const routes: Routes = [
     { path: 'cart', 
         component: CartComponent, 
         canActivate: [authGuard],
-        canDeactivate: [() => confirm('You have pending items. Do you want to leave?')]
+        canDeactivate: [checkoutGuard]
     },
     { path: '', redirectTo: 'products', pathMatch: 'full' },
     { path: '**', redirectTo: 'products' } // Wildcard route for a 404 page
