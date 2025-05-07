@@ -19,6 +19,7 @@ export const routes: Routes = [
         canActivate: [authGuard],
         canDeactivate: [checkoutGuard]
     },
+    { path: 'user', loadChildren: () => import('./user.routes') },
     { path: '', redirectTo: 'products', pathMatch: 'full' },
     { path: '**', redirectTo: 'products' } // Wildcard route for a 404 page
 ];
