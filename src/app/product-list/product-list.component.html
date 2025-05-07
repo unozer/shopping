@@ -2,6 +2,8 @@
 
 @if (products().length > 0) {
     <h1>{{products().length}} Products</h1>
+
+    <a routerLink="new">Add Product</a>
 }
 
 <ul class="pill-group">
@@ -28,5 +30,3 @@
 } @else {
     <p>No Product selected!</p>
 }
-
-<app-product-create></app-product-create>
