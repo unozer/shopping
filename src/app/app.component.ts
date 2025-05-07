@@ -1,5 +1,5 @@
 import { Component, inject, signal, computed } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
 import { from, Observable, of } from 'rxjs';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CopyrightDirective } from './directives/copyright.directive';
@@ -15,7 +15,8 @@ import { AuthComponent } from './auth/auth.component';
     ProductListComponent,
     CopyrightDirective,
     KeyLoggerComponent,
-    AuthComponent
+    AuthComponent,
+    RouterLink
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
