@@ -1,10 +1,11 @@
-import { Component, input, output, OnChanges } from '@angular/core';
+import { Component, input, output, OnChanges, OnInit } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { Product } from '../product';
 import { CurrencyPipe } from '@angular/common';
 import { ProductsService } from '../products.service';
 import { AuthService } from '../auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-detail',
@@ -13,33 +14,36 @@ import { AuthService } from '../auth.service';
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss'
 })
-export class ProductDetailComponent implements OnChanges {
-
-  constructor(private productService: ProductsService, public authService: AuthService) {}
-  
-  ngOnChanges(): void {
-    this.product$ = this.productService.getProduct(this.id()!);
-  }
-
-  id = input<number>();
-
-  deleted = output();
-
-  added = output<Product>();
+export class ProductDetailComponent implements OnInit {
 
   product$: Observable<Product> | undefined;
 
-  addToCart() {
+  constructor(
+    private productService: ProductsService, 
+    public authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
+  ngOnInit(): void {
+    this.product$ = this.route.paramMap.pipe(
+      switchMap((params) => {
+        return this.productService.getProduct(Number(params.get('id')));
+      }
+    ));
   }
 
+  addToCart() {}
+
   changePrice(product: Product, price: string) {
-    this.productService.updateProduct(product.id, Number(price)).subscribe();
+    this.productService.updateProduct(product.id, Number(price)).subscribe(
+      () => this.router.navigate(['/products'])
+    );
   }
 
   remove(product: Product) {
     this.productService.deleteProduct(product.id).subscribe(() => {
-      this.deleted.emit();
+      this.router.navigate(['/products']);
     });
   }
 }
