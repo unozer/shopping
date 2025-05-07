@@ -15,15 +15,19 @@ export class ProductsService {
   private products: Product[] = [];
 
   getProducts(): Observable<Product[]> {
-    const options = new HttpParams().set('limit', '10');
-    return this.http
-    .get<Product[]>(this.productsUrl, { params: options })
-    .pipe(
-      map((products) => {
-        this.products = products;
-        return products;
-      }
-    ));
+    if (this.products.length === 0) {
+      const options = new HttpParams().set('limit', '10');
+      return this.http
+        .get<Product[]>(this.productsUrl, { params: options })
+        .pipe(
+          map((products) => {
+            this.products = products;
+            return products;
+          })
+        );
+    } else {
+      return of(this.products);
+    }
   }
 
   getProduct(id: number): Observable<Product> {
@@ -42,24 +46,22 @@ export class ProductsService {
 
   updateProduct(id: number, price: number): Observable<Product> {
     return this.http
-    .patch<Product>(`${this.productsUrl}/${id}`, { price })
-    .pipe(
-      map((product) => {
-        const index = this.products.findIndex((p) => p.id === id);
-        this.products[index].price = price;
-        return product;
-      })
-    );
+      .patch<Product>(`${this.productsUrl}/${id}`, { price })
+      .pipe(
+        map((product) => {
+          const index = this.products.findIndex((p) => p.id === id);
+          this.products[index].price = price;
+          return product;
+        })
+      );
   }
 
   deleteProduct(id: number): Observable<void> {
-    return this.http
-    .delete<void>(`${this.productsUrl}/${id}`)
-    .pipe(
+    return this.http.delete<void>(`${this.productsUrl}/${id}`).pipe(
       tap(() => {
         const index = this.products.findIndex((p) => p.id === id);
         this.products.splice(index, 1);
-      }
-    ));
+      })
+    );
   }
 }

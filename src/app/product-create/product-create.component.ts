@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductsService } from '../products.service';
 
 @Component({
@@ -9,13 +10,13 @@ import { ProductsService } from '../products.service';
   styleUrl: './product-create.component.scss'
 })
 export class ProductCreateComponent {
-  constructor(private productsService: ProductsService) {}
+  constructor(private productsService: ProductsService, private router: Router) {}
 
   createProduct(title: string, price: string, category: string) {
     this.productsService.addProduct({ 
       title, 
       price: Number(price), 
       category 
-    }).subscribe();
+    }).subscribe(() => this.router.navigate(['/products']));
   }
 }
