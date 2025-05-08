@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 export class ProductDetailComponent implements OnInit {
 
   product$: Observable<Product> | undefined;
-
+  price: number | undefined;
   id = input<string>();
 
   constructor(
@@ -36,7 +36,7 @@ export class ProductDetailComponent implements OnInit {
   changePrice(product: Product) {
     this.productService.updateProduct(
       product.id, 
-      product.price,
+      this.price!,
     ).subscribe(
       () => this.router.navigate(['/products'])
     );
