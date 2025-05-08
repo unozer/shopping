@@ -1,1 +1,10 @@
-<p>cart works!</p>
+<p>Your Cart</p>
+
+<div [formGroup]="cartForm">
+    <div formArrayName="products">
+        @for (prod of cartForm.controls.products.controls; track $index) {
+            <label>{{products[$index].title}}</label>
+            <input type="number" [formControlName]="$index" placeholder="Qty"/>
+        }
+    </div>
+</div>

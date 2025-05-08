@@ -7,6 +7,7 @@ import { CurrencyPipe } from '@angular/common';
 import { ProductsService } from '../products.service';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -23,6 +24,7 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     private productService: ProductsService, 
+    private cartService: CartService,
     public authService: AuthService,
     private router: Router
   ) {}
@@ -31,7 +33,9 @@ export class ProductDetailComponent implements OnInit {
     this.product$ = this.productService.getProduct(Number(this.id()!));
   }
 
-  addToCart() {}
+  addToCart(id: number) {
+    this.cartService.addProduct(id).subscribe();
+  }
 
   changePrice(product: Product) {
     this.productService.updateProduct(
