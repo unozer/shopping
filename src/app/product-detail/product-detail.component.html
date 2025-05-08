@@ -8,8 +8,10 @@
         <strong>{{product.price | currency:'EUR'}}</strong>
     </p>
 
-    <input placeholder="New Price" #price type="number" />
-    <button (click)="changePrice(product, price.value)">Update Price</button>
+    <form (ngSubmit)="changePrice(product)">
+        <input placeholder="New Price" [(ngModel)]="product.price" name="price" type="number" />
+        <button type="submit">Update Price</button>
+    </form>
 
     <p class="pill-group">
         {{product.category}}

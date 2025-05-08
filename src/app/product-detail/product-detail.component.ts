@@ -1,16 +1,17 @@
-import { Component, input, output, OnChanges, OnInit } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-import { Observable, switchMap } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Product } from '../product';
 import { CurrencyPipe } from '@angular/common';
 import { ProductsService } from '../products.service';
 import { AuthService } from '../auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CurrencyPipe, AsyncPipe],
+  imports: [CurrencyPipe, AsyncPipe, FormsModule],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss'
 })
@@ -23,8 +24,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private productService: ProductsService, 
     public authService: AuthService,
-    private router: Router,
-    private route: ActivatedRoute
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -33,8 +33,11 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart() {}
 
-  changePrice(product: Product, price: string) {
-    this.productService.updateProduct(product.id, Number(price)).subscribe(
+  changePrice(product: Product) {
+    this.productService.updateProduct(
+      product.id, 
+      product.price,
+    ).subscribe(
       () => this.router.navigate(['/products'])
     );
   }
