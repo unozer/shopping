@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ProductsService } from '../products.service';
 
 @Component({
@@ -30,9 +30,9 @@ export class ProductCreateComponent implements OnInit {
 
   buildForm() {
     this.productForm = this.formBuilder.nonNullable.group({
-      title: [''],
-      price: this.formBuilder.nonNullable.control<number | undefined>(undefined),
-      category: ['']
+      title: ['', Validators.required],
+      price: this.formBuilder.nonNullable.control<number | undefined>(undefined, [Validators.required, Validators.min(1)]),
+      category: ['', Validators.required]
     });
   }
 

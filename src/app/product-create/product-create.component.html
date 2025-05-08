@@ -4,10 +4,19 @@
     <div>
         <label for="title">Title</label>
         <input id="title" placeholder="title" formControlName="title" required/>
+        @if (productForm!.controls.title.touched && productForm!.controls.title.invalid) {
+            <span class="help-text">Title is required.</span>
+        }
     </div>
     <div>
         <label for="price">Price</label>
         <input id="price" type="number" placeholder="price" formControlName="price" required/>
+        @if (productForm!.controls.price.touched && productForm!.controls.price.hasError('required')) {
+            <span class="help-text">Price is required.</span>
+        }
+        @if (productForm!.controls.price.touched && productForm!.controls.price.hasError('min')) {
+            <span class="help-text">Price must be at least 1.</span>
+        }
     </div>
     <div>
         <label for="category">Category</label>
@@ -17,8 +26,11 @@
             <option valie="electronics">Electronics</option>
             <option>Other</option>
         </select>
+        @if (productForm!.controls.category.touched && productForm!.controls.category.invalid) {
+            <span class="help-text">Category is required.</span>
+        }
     </div>
     <div>
-        <button type="submit">Add Product</button>
+        <button type="submit" [disabled]="productForm!.invalid">Add Product</button>
     </div>
 </form>
