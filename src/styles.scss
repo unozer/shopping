@@ -21,3 +21,14 @@ input.valid, input.ng-dirty.ng-valid {
 input.invalid, input.ng-dirty.ng-invalid {
     border: 2px solid red;
 }
+
+.help-text {
+    display: flex;
+    color: red;
+    font-size: 0.8rem;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

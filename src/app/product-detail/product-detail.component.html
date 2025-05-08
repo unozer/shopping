@@ -8,9 +8,18 @@
         <strong>{{product.price | currency:'EUR'}}</strong>
     </p>
 
-    <form (ngSubmit)="changePrice(product)">
-        <input placeholder="New Price" [(ngModel)]="price" name="price" type="number" />
-        <button type="submit">Update Price</button>
+    <form (ngSubmit)="changePrice(product)" #priceForm="ngForm">
+        <input 
+            placeholder="New Price" 
+            [(ngModel)]="price" 
+            name="price" 
+            type="number" 
+            #priceCtrl="ngModel" 
+            required min="1" />
+        <button type="submit" [disabled]="priceForm.invalid">Update Price</button>
+        @if (priceCtrl.dirty && (priceCtrl.invalid || priceCtrl.hasError('min'))) {
+            <span class="help-text">Please enter a valid price.</span>
+        }
     </form>
 
     <p class="pill-group">
