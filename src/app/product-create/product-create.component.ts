@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { MatButton } from '@angular/material/button';
 import { ProductsService } from '../products.service';
 import { priceMaximumValidator } from '../price-maximum.validator';
 
 @Component({
   selector: 'app-product-create',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MatButton],
   templateUrl: './product-create.component.html',
   styleUrl: './product-create.component.scss'
 })

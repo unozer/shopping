@@ -9,11 +9,12 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { PriceMaximumDirective } from '../price-maximum.directive';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CurrencyPipe, AsyncPipe, FormsModule, PriceMaximumDirective],
+  imports: [CurrencyPipe, AsyncPipe, FormsModule, PriceMaximumDirective, MatButton],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss'
 })

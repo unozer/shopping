@@ -32,9 +32,9 @@
 
     @if (authService.isLoggedIn()) {
         <div>
-            <button (click)="remove(product)">🗑️ Delete Product</button>
+            <button mat-raised-button (click)="remove(product)">🗑️ Delete Product</button>
             
-                <button (click)="addToCart(product.id)">🛒 Add to cart</button>
+            <button mat-raised-button (click)="addToCart(product.id)">🛒 Add to cart</button>
         </div>
     }
 </div>

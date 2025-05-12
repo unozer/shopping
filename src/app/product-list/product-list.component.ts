@@ -4,11 +4,13 @@ import { RouterLink, ActivatedRoute } from '@angular/router';
 import { of, switchMap } from 'rxjs';
 import { Product } from '../product';
 import { SortPipe } from '../pipes/sort.pipe';
+import { MatMiniFabButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [SortPipe, RouterLink],
+  imports: [SortPipe, RouterLink, MatMiniFabButton, MatIcon],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })

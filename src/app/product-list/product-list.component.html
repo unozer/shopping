@@ -1,6 +1,6 @@
-<p>product-list works!</p>
-
-<a routerLink="new">Add Product</a>
+<button mat-mini-fab routerLink="new">
+    <mat-icon>add</mat-icon>
+</button>
 
 @if (products()!.length > 0) {
     <h1>{{products()!.length}} Products</h1>
