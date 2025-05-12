@@ -3,11 +3,13 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
 import { CartService } from '../cart.service';
+import { MatInput } from '@angular/material/input';
+import { MatFormField, MatLabel } from '@angular/material/input';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,MatFormField, MatLabel, MatInput],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })

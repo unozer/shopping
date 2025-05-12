@@ -9,21 +9,26 @@
     </p>
 
     <form (ngSubmit)="changePrice(product)" #priceForm="ngForm">
-        <input 
-            placeholder="New Price" 
-            [(ngModel)]="price" 
-            name="price" 
-            type="number" 
-            #priceCtrl="ngModel" 
-            required min="1"
-            appPriceMaximum threshold="1000" />
-        <button type="submit" [disabled]="priceForm.invalid">Update Price</button>
-        @if (priceCtrl.dirty && priceCtrl.hasError('min')) {
-            <span class="help-text">Please enter a valid price.</span>
-        }
-        @if (priceCtrl.dirty && priceCtrl.hasError('priceMaximum')) {
-            <span class="help-text">Price must be less than 1000.</span>
-        }
+        <mat-form-field>
+            <input 
+                matInput
+                placeholder="New Price" 
+                [(ngModel)]="price" 
+                name="price" 
+                type="number" 
+                #priceCtrl="ngModel" 
+                required min="1"
+                appPriceMaximum threshold="1000" />
+            <button mat-icon-button matSuffix type="submit" [disabled]="priceForm.invalid">
+                <mat-icon>edit</mat-icon>
+            </button>
+            @if (priceCtrl.dirty && priceCtrl.hasError('min')) {
+                <mat-error>Please enter a valid price.</mat-error>
+            }
+            @if (priceCtrl.dirty && priceCtrl.hasError('priceMaximum')) {
+                <mat-error>Price must be less than 1000.</mat-error>
+            }
+        </mat-form-field>
     </form>
 
     <p class="pill-group">

@@ -3,8 +3,10 @@
 <div [formGroup]="cartForm">
     <div formArrayName="products">
         @for (prod of cartForm.controls.products.controls; track $index) {
-            <label>{{products[$index].title}}</label>
-            <input type="number" [formControlName]="$index" placeholder="Qty"/>
+            <mat-form-field>
+                <mat-label>{{products[$index].title}}</mat-label>
+                <input matInput type="number" [formControlName]="$index" placeholder="Qty"/>
+            </mat-form-field>
         }
     </div>
 </div>

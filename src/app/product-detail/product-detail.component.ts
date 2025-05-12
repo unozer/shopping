@@ -9,23 +9,37 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { PriceMaximumDirective } from '../price-maximum.directive';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatInput } from '@angular/material/input';
+import { MatFormField, MatError, MatSuffix } from '@angular/material/input';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CurrencyPipe, AsyncPipe, FormsModule, PriceMaximumDirective, MatButton],
+  imports: [
+    CurrencyPipe,
+    AsyncPipe,
+    FormsModule,
+    PriceMaximumDirective,
+    MatButton,
+    MatFormField,
+    MatError,
+    MatSuffix,
+    MatInput,
+    MatIcon,
+    MatIconButton
+  ],
   templateUrl: './product-detail.component.html',
-  styleUrl: './product-detail.component.scss'
+  styleUrl: './product-detail.component.scss',
 })
 export class ProductDetailComponent implements OnInit {
-
   product$: Observable<Product> | undefined;
   price: number | undefined;
   id = input<string>();
 
   constructor(
-    private productService: ProductsService, 
+    private productService: ProductsService,
     private cartService: CartService,
     public authService: AuthService,
     private router: Router
@@ -40,12 +54,9 @@ export class ProductDetailComponent implements OnInit {
   }
 
   changePrice(product: Product) {
-    this.productService.updateProduct(
-      product.id, 
-      this.price!,
-    ).subscribe(
-      () => this.router.navigate(['/products'])
-    );
+    this.productService
+      .updateProduct(product.id, this.price!)
+      .subscribe(() => this.router.navigate(['/products']));
   }
 
   remove(product: Product) {

@@ -14,16 +14,6 @@ label {
     margin-bottom: 8px;
 }
 
-input.valid,
-input.ng-dirty.ng-valid {
-    border: 2px solid green;
-}
-
-input.invalid,
-input.ng-dirty.ng-invalid {
-    border: 2px solid red;
-}
-
 .help-text {
     display: flex;
     color: red;
@@ -38,4 +28,8 @@ body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-form-field {
+    width: 100%;
 }
