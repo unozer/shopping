@@ -1,6 +1,6 @@
-import { Component, inject, signal, computed } from '@angular/core';
+import { AfterViewInit, Component, inject, signal } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
-import { from, Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CopyrightDirective } from './directives/copyright.directive';
 import { APP_SETTINGS, appSettings } from './app.settings';
@@ -23,7 +23,7 @@ import { AuthComponent } from './auth/auth.component';
   styleUrl: './app.component.scss',
   providers: [{ provide: APP_SETTINGS, useValue: appSettings }],
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
 
   title$ = new Observable<void>((observer) => {
     setInterval(() => {
@@ -35,6 +35,12 @@ export class AppComponent {
 
   currentDate = signal(new Date());
 
+  title = 'Pippo';
+
   constructor() {
+  }
+
+  ngAfterViewInit(): void {
+    this.title = this.settings.title;
   }
 }
