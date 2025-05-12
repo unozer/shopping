@@ -8,14 +8,15 @@
 
 <ul class="pill-group">
     @for (product of products()! | sort:'id'; track product.id; let i = $index) {
-        <li class="pill" (click)="selectedProduct = product">
-            @switch (product.category) {
-                @case ('jewelery') { 💍 }
-                @case ('electronics') { ⌨️ }
-                @default { 🏷️ }
-            }
-            <a [routerLink]="[product.id]">{{ product.title }}</a>
-        </li>
+        <mat-card [routerLink]="[product.id]">
+            <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title>{{ product.title }}</mat-card-title>
+                    <mat-card-subtitle>{{ product.category}}</mat-card-subtitle>
+                    <img mat-card-sm-image [src]="product.image" alt="Immagine puramente a scopo illustrativo" />
+                </mat-card-title-group>
+            </mat-card-header>
+        </mat-card>
     } @empty {
         <p>No Products found!</p>
     }
