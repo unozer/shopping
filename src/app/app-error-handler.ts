@@ -24,6 +24,9 @@ export class AppErrorHandler implements ErrorHandler {
         case 525:
             message = 'SSL handshake failed. Please check your SSL configuration.';
             break;
+        case 520:
+            message = 'Unknown error occurred. Please try again later.';
+            break;
         default:
           message = 'An unknown error occurred.';
       }
