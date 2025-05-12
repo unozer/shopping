@@ -14,11 +14,13 @@ label {
     margin-bottom: 8px;
 }
 
-input.valid, input.ng-dirty.ng-valid {
+input.valid,
+input.ng-dirty.ng-valid {
     border: 2px solid green;
 }
 
-input.invalid, input.ng-dirty.ng-invalid {
+input.invalid,
+input.ng-dirty.ng-invalid {
     border: 2px solid red;
 }
 
@@ -31,4 +33,14 @@ input.invalid, input.ng-dirty.ng-invalid {
 button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }

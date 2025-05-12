@@ -6,12 +6,13 @@ import { APP_SETTINGS, appSettings } from './app.settings';
 import { routes } from './app.routes';
 import { authInterceptor } from './auth.interceptor';
 import { AppErrorHandler } from './app-error-handler';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, withComponentInputBinding()), 
     provideHttpClient(withInterceptors([authInterceptor])),
     { provide: APP_SETTINGS, useValue: appSettings },
-    { provide: ErrorHandler, useClass: AppErrorHandler },
+    { provide: ErrorHandler, useClass: AppErrorHandler }, provideAnimationsAsync(),
   ],
 };
