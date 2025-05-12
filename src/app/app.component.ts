@@ -1,30 +1,30 @@
 import { AfterViewInit, Component, inject, signal } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ProductListComponent } from './product-list/product-list.component';
 import { CopyrightDirective } from './directives/copyright.directive';
 import { APP_SETTINGS, appSettings } from './app.settings';
-import { KeyLoggerComponent } from './key-logger/key-logger.component';
 import { AuthComponent } from './auth/auth.component';
+import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    ProductListComponent,
     CopyrightDirective,
-    KeyLoggerComponent,
     AuthComponent,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    MatToolbar,
+    MatToolbarRow,
+    MatButton,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   providers: [{ provide: APP_SETTINGS, useValue: appSettings }],
 })
 export class AppComponent implements AfterViewInit {
-
   title$ = new Observable<void>((observer) => {
     setInterval(() => {
       observer.next();
@@ -37,8 +37,7 @@ export class AppComponent implements AfterViewInit {
 
   title = 'Pippo';
 
-  constructor() {
-  }
+  constructor() {}
 
   ngAfterViewInit(): void {
     this.title = this.settings.title;
