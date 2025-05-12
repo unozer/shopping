@@ -17,6 +17,9 @@ export class ProductsService {
   private handleError(error: HttpErrorResponse) {
     let message = "";
     switch (error.status) {
+      case 0:
+        message = "Client side error. Please check your network connection.";
+        break;
       case HttpStatusCode.InternalServerError:
         message = "Server error. Please try again later.";
         break;
