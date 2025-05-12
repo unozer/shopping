@@ -1,7 +1,7 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Product } from './product';
-import { map, Observable, of, tap } from 'rxjs';
+import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 import { APP_SETTINGS } from './app.settings';
 
 @Injectable({
@@ -23,6 +23,10 @@ export class ProductsService {
           map((products) => {
             this.products = products;
             return products;
+          }),
+          catchError((error: HttpErrorResponse) => {
+            console.error('Error fetching products:', error);
+            return throwError(() => error);
           })
         );
     } else {
