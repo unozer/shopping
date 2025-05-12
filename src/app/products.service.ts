@@ -14,26 +14,6 @@ export class ProductsService {
 
   private products: Product[] = [];
 
-  private handleError(error: HttpErrorResponse) {
-    let message = "";
-    switch (error.status) {
-      case 0:
-        message = "Client side error. Please check your network connection.";
-        break;
-      case HttpStatusCode.InternalServerError:
-        message = "Server error. Please try again later.";
-        break;
-      case HttpStatusCode.BadRequest:
-        message = "Bad request. Please check your input.";
-        break;
-      default:
-        message = "An unknown error occurred.";
-    }
-
-    console.error(message, error.error);
-
-    return throwError(() => error);
-  }
 
   getProducts(limit?: number): Observable<Product[]> {
     if (this.products.length === 0) {
@@ -45,8 +25,7 @@ export class ProductsService {
             this.products = products;
             return products;
           }),
-          retry(3),
-          catchError(this.handleError),
+          retry(3)
         );
     } else {
       return of(this.products);
