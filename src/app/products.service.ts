@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams, HttpStatusCode } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Product } from './product';
 import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
@@ -14,6 +14,24 @@ export class ProductsService {
 
   private products: Product[] = [];
 
+  private handleError(error: HttpErrorResponse) {
+    let message = "";
+    switch (error.status) {
+      case HttpStatusCode.InternalServerError:
+        message = "Server error. Please try again later.";
+        break;
+      case HttpStatusCode.BadRequest:
+        message = "Bad request. Please check your input.";
+        break;
+      default:
+        message = "An unknown error occurred.";
+    }
+
+    console.error(message, error.error);
+
+    return throwError(() => error);
+  }
+
   getProducts(limit?: number): Observable<Product[]> {
     if (this.products.length === 0) {
       const options = new HttpParams().set('limit', limit || '10');
@@ -24,10 +42,7 @@ export class ProductsService {
             this.products = products;
             return products;
           }),
-          catchError((error: HttpErrorResponse) => {
-            console.error('Error fetching products:', error);
-            return throwError(() => error);
-          })
+          catchError(this.handleError),
         );
     } else {
       return of(this.products);
