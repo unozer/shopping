@@ -9,6 +9,10 @@ import { MatMiniFabButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
+import {
+  MatButtonToggle,
+  MatButtonToggleGroup,
+} from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-product-list',
@@ -21,6 +25,8 @@ import { MatTableModule } from '@angular/material/table';
     MatCardModule,
     MatTableModule,
     CurrencyPipe,
+    MatButtonToggle,
+    MatButtonToggleGroup,
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss',
