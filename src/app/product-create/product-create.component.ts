@@ -12,6 +12,7 @@ import { ProductsService } from '../products.service';
 import { priceMaximumValidator } from '../price-maximum.validator';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatError, MatLabel } from '@angular/material/input';
+import { MatSelect, MatOption } from '@angular/material/select';
 
 @Component({
   selector: 'app-product-create',
@@ -23,6 +24,8 @@ import { MatFormField, MatError, MatLabel } from '@angular/material/input';
     MatError,
     MatLabel,
     MatInput,
+    MatSelect,
+    MatOption,
   ],
   templateUrl: './product-create.component.html',
   styleUrl: './product-create.component.scss',

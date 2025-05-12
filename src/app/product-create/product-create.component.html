@@ -19,18 +19,18 @@
             <mat-error class="help-text">Price must be less than 1000</mat-error>
         }
     </mat-form-field>
-    <div>
-        <label for="category">Category</label>
-        <select id="category" formControlName="category">
-            <option>Select category</option>
-            <option value="jewelery">Jewelery</option>
-            <option valie="electronics">Electronics</option>
-            <option>Other</option>
-        </select>
+    <mat-form-field>
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category">
+            <mat-option>Select category</mat-option>
+            <mat-option value="jewelery">Jewelery</mat-option>
+            <mat-option valie="electronics">Electronics</mat-option>
+            <mat-option>Other</mat-option>
+        </mat-select>
         @if (productForm!.controls.category.touched && productForm!.controls.category.invalid) {
-            <span class="help-text">Category is required.</span>
+            <mat-error>Category is required.</mat-error>
         }
-    </div>
+    </mat-form-field>
     <div>
         <button mat-stroked-button type="submit" [disabled]="productForm!.invalid">Create</button>
     </div>
