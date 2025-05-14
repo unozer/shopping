@@ -23,9 +23,9 @@
 
   @defer () {
     <app-featured style="margin: 16px;"/>
-  } @placeholder(minimum 1s) {
-    <img src="assets/placeholder.png" alt="Loading..." />
-  } 
+  } @loading(minimum 3s) {
+    <mat-spinner ngSkipHydration></mat-spinner>
+  }
 
 </main>
 
