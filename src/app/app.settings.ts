@@ -1,4 +1,5 @@
 import { InjectionToken } from "@angular/core";
+import { environment } from "../environments/environment";
 
 export interface AppSettings {
     title: string;
@@ -9,7 +10,7 @@ export interface AppSettings {
 export const appSettings: AppSettings = {
     title: 'My e-shop',
     version: '1.0.0',
-    apiUrl: 'https://fakestoreapi.com'
+    apiUrl: environment.apiUrl,
 };
 
 export const APP_SETTINGS = new InjectionToken<AppSettings>('app.settings');
