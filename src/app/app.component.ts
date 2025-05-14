@@ -1,11 +1,13 @@
 import { AfterViewInit, Component, inject, signal } from '@angular/core';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CopyrightDirective } from './directives/copyright.directive';
 import { APP_SETTINGS, appSettings } from './app.settings';
 import { AuthComponent } from './auth/auth.component';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { MatButton } from '@angular/material/button';
+import { MatBadge } from '@angular/material/badge';
+import { CartService } from './cart.service';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +17,10 @@ import { MatButton } from '@angular/material/button';
     CopyrightDirective,
     AuthComponent,
     RouterLink,
-    RouterLinkActive,
     MatToolbar,
     MatToolbarRow,
     MatButton,
+    MatBadge,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -32,7 +34,7 @@ export class AppComponent implements AfterViewInit {
   });
 
   settings = inject(APP_SETTINGS);
-
+  cartService = inject(CartService);
   currentDate = signal(new Date());
 
   title = 'Pippo';
