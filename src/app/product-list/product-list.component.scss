@@ -45,3 +45,9 @@ button {
     justify-content: space-between;
     gap: 1rem;
 }
+
+img {
+    margin: 4px;
+    object-fit: contain;
+    object-position: right 4px top 0;
+}

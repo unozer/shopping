@@ -2,7 +2,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { Component } from '@angular/core';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { of, switchMap } from 'rxjs';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, NgOptimizedImage } from '@angular/common';
 import { Product } from '../product';
 import { SortPipe } from '../pipes/sort.pipe';
 import { MatMiniFabButton } from '@angular/material/button';
@@ -27,6 +27,7 @@ import {
     CurrencyPipe,
     MatButtonToggle,
     MatButtonToggleGroup,
+    NgOptimizedImage
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss',

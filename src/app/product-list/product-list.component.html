@@ -25,7 +25,7 @@
             <mat-card-title-group>
                 <mat-card-title>{{ product.title }}</mat-card-title>
                 <mat-card-subtitle>{{ product.category}}</mat-card-subtitle>
-                <img mat-card-sm-image [src]="product.image" alt="Immagine puramente a scopo illustrativo" />
+                <img mat-card-sm-image [ngSrc]="product.image" fill alt="Immagine puramente a scopo illustrativo" />
             </mat-card-title-group>
         </mat-card-header>
     </mat-card>
