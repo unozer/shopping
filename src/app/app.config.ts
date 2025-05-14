@@ -1,6 +1,10 @@
 import { ApplicationConfig, ErrorHandler } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
-import { provideHttpClient, withInterceptors, withFetch } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptors,
+  withFetch,
+} from '@angular/common/http';
 import { APP_SETTINGS, appSettings } from './app.settings';
 
 import { routes } from './app.routes';
@@ -11,11 +15,11 @@ import { provideClientHydration } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideClientHydration(),
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(withInterceptors([authInterceptor]), withFetch()),
     { provide: APP_SETTINGS, useValue: appSettings },
     { provide: ErrorHandler, useClass: AppErrorHandler },
     provideAnimationsAsync(),
-    provideClientHydration(),
   ],
 };
