@@ -3,6 +3,6 @@
     <span>You have {{data}} pending items, are you sure do you want to coninue?</span>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-raised-button>Yes</button>
-    <button mat-button>No</button>
+    <button mat-raised-button mat-dialog-close>Yes</button>
+    <button mat-button [mat-dialog-close]="false">No</button>
 </mat-dialog-actions>
