@@ -37,6 +37,10 @@ export class ProductsService {
     return of(product!);
   }
 
+  getFeatured(): Observable<Product> {
+    return this.http.get<Product>(`${this.productsUrl}/20`);
+  }
+
   addProduct(newProduct: Partial<Product>): Observable<Product> {
     return this.http.post<Product>(this.productsUrl, newProduct).pipe(
       map((product) => {
