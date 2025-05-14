@@ -14,6 +14,8 @@ import { MatInput } from '@angular/material/input';
 import { MatFormField, MatError, MatSuffix } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { MatChipSet, MatChip } from '@angular/material/chips';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Unary } from '@angular/compiler';
 
 @Component({
   selector: 'app-product-detail',
@@ -32,6 +34,7 @@ import { MatChipSet, MatChip } from '@angular/material/chips';
     MatIconButton,
     MatChipSet,
     MatChip,
+    MatSnackBarModule,
   ],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss',
@@ -45,6 +48,7 @@ export class ProductDetailComponent implements OnInit {
     private productService: ProductsService,
     private cartService: CartService,
     public authService: AuthService,
+    private snackBar: MatSnackBar,
     private router: Router
   ) {}
 
@@ -54,17 +58,24 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart(id: number) {
     this.cartService.addProduct(id).subscribe();
+    this.snackBar.open('Product added to cart', undefined, {
+      duration: 2000,
+    });
   }
 
   changePrice(product: Product) {
     this.productService
       .updateProduct(product.id, this.price!)
       .subscribe(() => this.router.navigate(['/products']));
+    this.snackBar.open('Product price updated', 'Close', {
+      duration: 2000,
+    });
   }
 
   remove(product: Product) {
     this.productService.deleteProduct(product.id).subscribe(() => {
       this.router.navigate(['/products']);
     });
+    this.snackBar.open('Product removed', 'Close', {});
   }
 }
