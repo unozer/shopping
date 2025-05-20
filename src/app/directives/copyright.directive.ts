@@ -1,4 +1,4 @@
-import { Directive, ElementRef, inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Directive, ElementRef, Inject, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 @Directive({
@@ -7,8 +7,10 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class CopyrightDirective implements OnInit {
 
-  platform = inject(PLATFORM_ID);
-  el = inject(ElementRef);
+  //platform = inject(PLATFORM_ID);
+  //el = inject(ElementRef);
+
+  constructor(private el: ElementRef, @Inject(PLATFORM_ID) private platform: Object) { }
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platform)) {
