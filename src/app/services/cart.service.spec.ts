@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { CartService } from './cart.service';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { APP_SETTINGS, appSettings } from './app.settings';
+import { APP_SETTINGS, appSettings } from '../app.settings';
 import { provideHttpClient } from '@angular/common/http';
 
 describe('CartService', () => {

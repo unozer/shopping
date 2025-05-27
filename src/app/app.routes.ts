@@ -3,9 +3,9 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { authGuard } from './auth.guard';
-import { checkoutGuard } from './checkout.guard';
-import { productsResolver } from './products.resolver';
+import { authGuard } from './auth/auth.guard';
+import { checkoutGuard } from './guards/checkout.guard';
+import { productsResolver } from './resolvers/products.resolver';
 
 export const routes: Routes = [
     { path: 'products/new', component: ProductCreateComponent },

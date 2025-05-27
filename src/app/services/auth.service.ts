@@ -1,7 +1,7 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { APP_SETTINGS } from './app.settings';
+import { APP_SETTINGS } from '../app.settings';
 
 @Injectable({
   providedIn: 'root'

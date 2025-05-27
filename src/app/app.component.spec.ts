@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { CartService } from './cart.service';
+import { CartService } from './services/cart.service';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 import { APP_SETTINGS, appSettings } from './app.settings';
 
 describe('AppComponent', () => {

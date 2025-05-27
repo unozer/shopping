@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuthComponent } from './auth.component';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { computed } from '@angular/core';
 
 describe('AuthComponent', () => {

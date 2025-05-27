@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
-import { Cart } from './cart';
-import { APP_SETTINGS } from './app.settings';
+import { Cart } from '../model/cart';
+import { APP_SETTINGS } from '../app.settings';
 import { HttpClient } from '@angular/common/http';
 import { defer, map, Observable } from 'rxjs';
 

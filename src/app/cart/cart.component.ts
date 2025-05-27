@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Product } from '../product';
-import { ProductsService } from '../products.service';
-import { CartService } from '../cart.service';
+import { Product } from '../model/product';
+import { ProductsService } from '../services/products.service';
+import { CartService } from '../services/cart.service';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel } from '@angular/material/input';
 

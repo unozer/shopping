@@ -3,7 +3,7 @@ import { ProductListComponent } from './product-list.component';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Product } from '../product';
+import { Product } from '../model/product';
 
 const mockProducts: Product[] = [
   { id: 1, title: 'Test Product 1', price: 100, category: 'test', image: 'test.jpg' },

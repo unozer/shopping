@@ -7,7 +7,7 @@ import { AuthComponent } from './auth/auth.component';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { MatButton } from '@angular/material/button';
 import { MatBadge } from '@angular/material/badge';
-import { CartService } from './cart.service';
+import { CartService } from './services/cart.service';
 import { FeaturedComponent } from './featured/featured.component';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 

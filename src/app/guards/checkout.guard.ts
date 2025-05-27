@@ -1,8 +1,8 @@
 import { inject } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
-import { CartService } from './cart.service';
+import { CartService } from '../services/cart.service';
 import { MatDialog } from '@angular/material/dialog';
-import { CheckoutComponent } from './checkout/checkout.component';
+import { CheckoutComponent } from '../checkout/checkout.component';
 
 export const checkoutGuard: CanActivateFn = (route, state) => {
   const cartService = inject(CartService);

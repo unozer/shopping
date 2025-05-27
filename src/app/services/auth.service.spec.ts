@@ -1,13 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProductsService } from './products.service';
+import { AuthService } from './auth.service';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
-import { APP_SETTINGS, appSettings } from './app.settings';
+import { APP_SETTINGS, appSettings } from '../app.settings';
 
-describe('ProductsService', () => {
-  let service: ProductsService;
+describe('AuthService', () => {
+  let service: AuthService;
   let httpTestingController: HttpTestingController;
+
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -17,7 +18,7 @@ describe('ProductsService', () => {
         { provide: APP_SETTINGS, useValue: appSettings },
       ]
     });
-    service = TestBed.inject(ProductsService);
+    service = TestBed.inject(AuthService);
     httpTestingController = TestBed.inject(HttpTestingController);
   });
 

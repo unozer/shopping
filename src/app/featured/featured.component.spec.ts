@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FeaturedComponent } from './featured.component';
-import { ProductsService } from '../products.service';
+import { ProductsService } from '../services/products.service';
 import { of } from 'rxjs';
 
 describe('FeaturedComponent', () => {

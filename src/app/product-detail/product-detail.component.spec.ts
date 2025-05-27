@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductDetailComponent } from './product-detail.component';
-import { ProductsService } from '../products.service';
-import { CartService } from '../cart.service';
-import { AuthService } from '../auth.service';
+import { ProductsService } from '../services/products.service';
+import { CartService } from '../services/cart.service';
+import { AuthService } from '../services/auth.service';
 import { of } from 'rxjs';
 import { computed } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';

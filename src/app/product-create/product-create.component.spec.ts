@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductCreateComponent } from './product-create.component';
 import { provideRouter } from '@angular/router';
 import { routes } from '../app.routes';
-import { ProductsService } from '../products.service';
+import { ProductsService } from '../services/products.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ProductCreateComponent', () => {

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { of, switchMap } from 'rxjs';
 import { CurrencyPipe, NgOptimizedImage } from '@angular/common';
-import { Product } from '../product';
+import { Product } from '../model/product';
 import { SortPipe } from '../pipes/sort.pipe';
 import { MatMiniFabButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
