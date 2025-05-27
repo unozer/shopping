@@ -7,9 +7,6 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class CopyrightDirective implements OnInit {
 
-  //platform = inject(PLATFORM_ID);
-  //el = inject(ElementRef);
-
   constructor(private el: ElementRef, @Inject(PLATFORM_ID) private platform: Object) { }
 
   ngOnInit(): void {
