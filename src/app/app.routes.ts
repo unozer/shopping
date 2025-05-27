@@ -3,7 +3,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { authGuard } from './auth/auth.guard';
+import { authGuard } from './guards/auth.guard';
 import { checkoutGuard } from './guards/checkout.guard';
 import { productsResolver } from './resolvers/products.resolver';
 
