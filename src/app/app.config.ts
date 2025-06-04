@@ -1,10 +1,6 @@
 import { ApplicationConfig, ErrorHandler } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
-import {
-  provideHttpClient,
-  withInterceptors,
-  withFetch,
-} from '@angular/common/http';
+import { provideHttpClient, withInterceptors, withFetch } from '@angular/common/http';
 import { APP_SETTINGS, appSettings } from './app.settings';
 
 import { routes } from './app.routes';
