@@ -16,30 +16,31 @@ import { MatIcon } from '@angular/material/icon';
 import { MatChipSet, MatChip } from '@angular/material/chips';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Unary } from '@angular/compiler';
+import { HttpResourceRef } from '@angular/common/http';
 
 @Component({
-    selector: 'app-product-detail',
-    imports: [
-        CurrencyPipe,
-        AsyncPipe,
-        FormsModule,
-        PriceMaximumDirective,
-        MatButton,
-        MatFormField,
-        MatError,
-        MatSuffix,
-        MatInput,
-        MatIcon,
-        MatIconButton,
-        MatChipSet,
-        MatChip,
-        MatSnackBarModule,
-    ],
-    templateUrl: './product-detail.component.html',
-    styleUrl: './product-detail.component.scss'
+  selector: 'app-product-detail',
+  imports: [
+    CurrencyPipe,
+    AsyncPipe,
+    FormsModule,
+    PriceMaximumDirective,
+    MatButton,
+    MatFormField,
+    MatError,
+    MatSuffix,
+    MatInput,
+    MatIcon,
+    MatIconButton,
+    MatChipSet,
+    MatChip,
+    MatSnackBarModule,
+  ],
+  templateUrl: './product-detail.component.html',
+  styleUrl: './product-detail.component.scss'
 })
-export class ProductDetailComponent implements OnInit {
-  product$: Observable<Product> | undefined;
+export class ProductDetailComponent {
+  product: Product | null = null;
   price: number | undefined;
   id = input<string>();
 
@@ -49,11 +50,13 @@ export class ProductDetailComponent implements OnInit {
     public authService: AuthService,
     private snackBar: MatSnackBar,
     private router: Router
-  ) {}
-
-  ngOnInit(): void {
-    this.product$ = this.productService.getProduct(Number(this.id()!));
+  ) {
+    this.product = this.productService.getProduct(Number(this.id()!));
   }
+
+  // ngOnInit(): void {
+  //   this.product = this.productService.getProduct(Number(this.id()!));
+  // }
 
   addToCart(id: number) {
     this.cartService.addProduct(id).subscribe();

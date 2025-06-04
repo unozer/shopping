@@ -5,20 +5,19 @@ import { Product } from '../model/product';
 import { MatCardModule } from '@angular/material/card';
 import { MatButton } from '@angular/material/button';
 import { AsyncPipe } from '@angular/common';
+import { HttpResourceRef } from '@angular/common/http';
 
 @Component({
-    selector: 'app-featured',
-    imports: [MatCardModule, MatButton, AsyncPipe],
-    templateUrl: './featured.component.html',
-    styleUrl: './featured.component.scss'
+  selector: 'app-featured',
+  imports: [MatCardModule, MatButton, AsyncPipe],
+  templateUrl: './featured.component.html',
+  styleUrl: './featured.component.scss'
 })
-export class FeaturedComponent implements OnInit {
+export class FeaturedComponent {
 
-  products$: Observable<Product> | undefined;
+  products: HttpResourceRef<Product | undefined> | undefined;
 
-  constructor(private productsService: ProductsService) {}
-
-  ngOnInit(): void {
-    this.products$ = this.productsService.getFeatured();
+  constructor(private productsService: ProductsService) {
+    this.products = this.productsService.getFeatured();
   }
 }

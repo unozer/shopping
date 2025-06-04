@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpParams, HttpStatusCode } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams, httpResource, HttpResourceRef, HttpStatusCode } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Product } from '../model/product';
 import { catchError, map, Observable, of, retry, tap, throwError } from 'rxjs';
@@ -9,36 +9,56 @@ import { APP_SETTINGS } from '../app.settings';
 })
 export class ProductsService {
   private productsUrl = `${inject(APP_SETTINGS).apiUrl}/products`;
-
-  constructor(private http: HttpClient) {}
-
   private products: Product[] = [];
 
+  constructor(private http: HttpClient) { }
 
-  getProducts(limit?: number): Observable<Product[]> {
-    if (this.products.length === 0) {
-      const options = new HttpParams().set('limit', limit || '10');
-      return this.http
-        .get<Product[]>(this.productsUrl, { params: options })
-        .pipe(
-          map((products) => {
-            this.products = products;
-            return products;
-          }),
-          retry(3)
-        );
-    } else {
-      return of(this.products);
-    }
+  getProducts(
+    limit?: number
+  ): HttpResourceRef<Product[] | undefined> {
+    let productsResource = httpResource<Product[]>(() => ({
+      url: this.productsUrl,
+      method: 'GET',
+      params: {
+        limit: limit ? limit.toString() : '10',
+      }
+    }));
+
+    this.products = productsResource.value()!;
+
+    return productsResource;
   }
 
-  getProduct(id: number): Observable<Product> {
-    const product = this.products.find((p) => p.id === id);
-    return of(product!);
+  // getProducts(limit?: number): Observable<Product[]> {
+  //   if (this.products.length === 0) {
+  //     const options = new HttpParams().set('limit', limit || '10');
+  //     return this.http
+  //       .get<Product[]>(this.productsUrl, { params: options })
+  //       .pipe(
+  //         map((products) => {
+  //           this.products = products;
+  //           return products;
+  //         }),
+  //         retry(3)
+  //       );
+  //   } else {
+  //     return of(this.products);
+  //   }
+  // }
+
+  getProduct(
+    id: number
+  ): Product | null {
+    return this.products.find((p) => p.id === id) ?? null;
   }
 
-  getFeatured(): Observable<Product> {
-    return this.http.get<Product>(`${this.productsUrl}/20`);
+  // getProduct(id: number): Observable<Product> {
+  //   const product = this.products.find((p) => p.id === id);
+  //   return of(product!);
+  // }
+
+  getFeatured(): HttpResourceRef<Product | undefined> {
+    return httpResource<Product>(() => `${this.productsUrl}/20`);
   }
 
   addProduct(newProduct: Partial<Product>): Observable<Product> {

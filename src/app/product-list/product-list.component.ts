@@ -13,29 +13,32 @@ import {
   MatButtonToggle,
   MatButtonToggleGroup,
 } from '@angular/material/button-toggle';
+import { ProductsService } from '../services/products.service';
 
 @Component({
-    selector: 'app-product-list',
-    imports: [
-        SortPipe,
-        RouterLink,
-        MatMiniFabButton,
-        MatIcon,
-        MatCardModule,
-        MatTableModule,
-        CurrencyPipe,
-        MatButtonToggle,
-        MatButtonToggleGroup,
-        NgOptimizedImage
-    ],
-    templateUrl: './product-list.component.html',
-    styleUrl: './product-list.component.scss'
+  selector: 'app-product-list',
+  imports: [
+    SortPipe,
+    RouterLink,
+    MatMiniFabButton,
+    MatIcon,
+    MatCardModule,
+    MatTableModule,
+    CurrencyPipe,
+    MatButtonToggle,
+    MatButtonToggleGroup,
+    NgOptimizedImage
+  ],
+  templateUrl: './product-list.component.html',
+  styleUrl: './product-list.component.scss'
 })
 export class ProductListComponent {
-  products = toSignal(
-    this.route.data.pipe(switchMap((data) => of(data['products'])))
-  );
+  // products = toSignal(
+  //   this.route.data.pipe(switchMap((data) => of(data['products'])))
+  // );
 
+  products = this.productsService.getProducts(10);
+  
   selectedProduct: Product | undefined;
 
   columnNames = ['title', 'price'];
@@ -44,5 +47,5 @@ export class ProductListComponent {
     alert(`${product.title} Product added to cart!`);
   }
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private productsService: ProductsService) { }
 }

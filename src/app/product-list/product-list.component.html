@@ -1,5 +1,5 @@
-@if (products()!.length > 0) {
-<h1>{{products()!.length}} Products</h1>
+@if (products.value()!.length > 0) {
+<h1>{{products.value()!.length}} Products</h1>
 }
 
 <div class="button-group">
@@ -19,7 +19,7 @@
 
 @if (group.value === 'card') {
 
-    @for (product of products()! | sort:'id'; track product.id; let i = $index) {
+    @for (product of products.value()! | sort:'id'; track product.id; let i = $index) {
     <mat-card [routerLink]="[product.id]">
         <mat-card-header>
             <mat-card-title-group>
@@ -33,7 +33,7 @@
     <p>No Products found!</p>
     }
 } @else {
-    <table mat-table [dataSource]="products()!">
+    <table mat-table [dataSource]="products.value()!">
         <ng-container matColumnDef="title">
             <th mat-header-cell *matHeaderCellDef>Title</th>
             <td mat-cell *matCellDef="let product">

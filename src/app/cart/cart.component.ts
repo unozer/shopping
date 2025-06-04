@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, effect, inject } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Product } from '../model/product';
 import { ProductsService } from '../services/products.service';
@@ -13,7 +13,7 @@ import { MatFormField, MatLabel } from '@angular/material/input';
     styleUrl: './cart.component.scss'
 })
 export class CartComponent implements OnInit {
-
+  private productService = inject(ProductsService);
   products: Product[] = [];
 
   cartForm = new FormGroup({
@@ -22,23 +22,30 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
-    this.buildForm();
   }
 
-  constructor(private cartService: CartService, private producctService: ProductsService) {}
-
-  private getProducts() {
-    this.producctService.getProducts().subscribe(products => {
-      this.cartService.cart?.products.forEach(cartProduct => {
-        const product = products.find(p => p.id === cartProduct.productId);
-        if (product) {
-          this.products.push(product);
-        }
-      });
+  constructor(private cartService: CartService) {
+    effect(() => {
+      const productsRef = this.productService.getProducts();
+      if (!productsRef.error) {
+        this.products = [];
+        this.cartService.cart?.products.forEach(cartProduct => {
+          //const product = productsRef.data.find(p => p.id === cartProduct.productId);
+          // if (product) {
+          //   this.products.push(product);
+          // }
+        });
+        this.buildForm();
+      }
     });
   }
 
+  private getProducts() {
+    this.productService.getProducts();
+  }
+
   private buildForm() {
+    this.cartForm.controls.products.clear();
     this.products.forEach(() => {
       this.cartForm.controls.products.push(new FormControl(1, { nonNullable: true }));
     });
