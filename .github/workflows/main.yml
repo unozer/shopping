@@ -2,9 +2,9 @@ name: Angular CI - Test Unitari
 
 on:
   push:
-    branches: [master]
+    branches: [master, httpResource]
   pull_request:
-    branches: [master]
+    branches: [master, httpResource]
 
 jobs:
   build_and_test:
