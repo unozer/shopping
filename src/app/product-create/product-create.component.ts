@@ -15,20 +15,19 @@ import { MatFormField, MatError, MatLabel } from '@angular/material/input';
 import { MatSelect, MatOption } from '@angular/material/select';
 
 @Component({
-  selector: 'app-product-create',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatButton,
-    MatFormField,
-    MatError,
-    MatLabel,
-    MatInput,
-    MatSelect,
-    MatOption,
-  ],
-  templateUrl: './product-create.component.html',
-  styleUrl: './product-create.component.scss',
+    selector: 'app-product-create',
+    imports: [
+        ReactiveFormsModule,
+        MatButton,
+        MatFormField,
+        MatError,
+        MatLabel,
+        MatInput,
+        MatSelect,
+        MatOption,
+    ],
+    templateUrl: './product-create.component.html',
+    styleUrl: './product-create.component.scss'
 })
 export class ProductCreateComponent implements OnInit {
   productForm:

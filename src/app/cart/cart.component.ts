@@ -7,11 +7,10 @@ import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel } from '@angular/material/input';
 
 @Component({
-  selector: 'app-cart',
-  standalone: true,
-  imports: [ReactiveFormsModule,MatFormField, MatLabel, MatInput],
-  templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss'
+    selector: 'app-cart',
+    imports: [ReactiveFormsModule, MatFormField, MatLabel, MatInput],
+    templateUrl: './cart.component.html',
+    styleUrl: './cart.component.scss'
 })
 export class CartComponent implements OnInit {
 

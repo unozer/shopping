@@ -5,9 +5,8 @@ import { FormsModule, NgModel } from '@angular/forms';
 import { PriceMaximumDirective } from './price-maximum.directive';
 
 @Component({
-  template: `<input type="number" appPriceMaximum threshold={{maxPrice}} [(ngModel)]="price">`,
-  standalone: true,
-  imports: [FormsModule, PriceMaximumDirective]
+    template: `<input type="number" appPriceMaximum threshold={{maxPrice}} [(ngModel)]="price">`,
+    imports: [FormsModule, PriceMaximumDirective]
 })
 class TestComponent {
   maxPrice = 100;

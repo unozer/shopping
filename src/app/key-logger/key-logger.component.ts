@@ -2,11 +2,10 @@ import { Component, ElementRef, viewChild, OnInit, input } from '@angular/core';
 import { filter, fromEvent, map, tap } from 'rxjs';
 
 @Component({
-  selector: 'app-key-logger',
-  standalone: true,
-  imports: [],
-  templateUrl: './key-logger.component.html',
-  styleUrl: './key-logger.component.scss',
+    selector: 'app-key-logger',
+    imports: [],
+    templateUrl: './key-logger.component.html',
+    styleUrl: './key-logger.component.scss'
 })
 export class KeyLoggerComponent implements OnInit {
   ngOnInit(): void {

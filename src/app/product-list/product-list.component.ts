@@ -15,22 +15,21 @@ import {
 } from '@angular/material/button-toggle';
 
 @Component({
-  selector: 'app-product-list',
-  standalone: true,
-  imports: [
-    SortPipe,
-    RouterLink,
-    MatMiniFabButton,
-    MatIcon,
-    MatCardModule,
-    MatTableModule,
-    CurrencyPipe,
-    MatButtonToggle,
-    MatButtonToggleGroup,
-    NgOptimizedImage
-  ],
-  templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.scss',
+    selector: 'app-product-list',
+    imports: [
+        SortPipe,
+        RouterLink,
+        MatMiniFabButton,
+        MatIcon,
+        MatCardModule,
+        MatTableModule,
+        CurrencyPipe,
+        MatButtonToggle,
+        MatButtonToggleGroup,
+        NgOptimizedImage
+    ],
+    templateUrl: './product-list.component.html',
+    styleUrl: './product-list.component.scss'
 })
 export class ProductListComponent {
   products = toSignal(

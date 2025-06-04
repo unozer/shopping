@@ -7,11 +7,10 @@ import { MatButton } from '@angular/material/button';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-featured',
-  standalone: true,
-  imports: [MatCardModule, MatButton, AsyncPipe],
-  templateUrl: './featured.component.html',
-  styleUrl: './featured.component.scss'
+    selector: 'app-featured',
+    imports: [MatCardModule, MatButton, AsyncPipe],
+    templateUrl: './featured.component.html',
+    styleUrl: './featured.component.scss'
 })
 export class FeaturedComponent implements OnInit {
 

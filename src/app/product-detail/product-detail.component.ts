@@ -18,26 +18,25 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Unary } from '@angular/compiler';
 
 @Component({
-  selector: 'app-product-detail',
-  standalone: true,
-  imports: [
-    CurrencyPipe,
-    AsyncPipe,
-    FormsModule,
-    PriceMaximumDirective,
-    MatButton,
-    MatFormField,
-    MatError,
-    MatSuffix,
-    MatInput,
-    MatIcon,
-    MatIconButton,
-    MatChipSet,
-    MatChip,
-    MatSnackBarModule,
-  ],
-  templateUrl: './product-detail.component.html',
-  styleUrl: './product-detail.component.scss',
+    selector: 'app-product-detail',
+    imports: [
+        CurrencyPipe,
+        AsyncPipe,
+        FormsModule,
+        PriceMaximumDirective,
+        MatButton,
+        MatFormField,
+        MatError,
+        MatSuffix,
+        MatInput,
+        MatIcon,
+        MatIconButton,
+        MatChipSet,
+        MatChip,
+        MatSnackBarModule,
+    ],
+    templateUrl: './product-detail.component.html',
+    styleUrl: './product-detail.component.scss'
 })
 export class ProductDetailComponent implements OnInit {
   product$: Observable<Product> | undefined;
