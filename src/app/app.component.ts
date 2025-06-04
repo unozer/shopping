@@ -12,22 +12,22 @@ import { FeaturedComponent } from './featured/featured.component';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
-    selector: 'app-root',
-    imports: [
-        RouterOutlet,
-        CopyrightDirective,
-        AuthComponent,
-        RouterLink,
-        MatToolbar,
-        MatToolbarRow,
-        MatButton,
-        MatBadge,
-        FeaturedComponent,
-        MatProgressSpinner
-    ],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss',
-    providers: [{ provide: APP_SETTINGS, useValue: appSettings }]
+  selector: 'app-root',
+  imports: [
+    RouterOutlet,
+    CopyrightDirective,
+    AuthComponent,
+    RouterLink,
+    MatToolbar,
+    MatToolbarRow,
+    MatButton,
+    MatBadge,
+    FeaturedComponent,
+    MatProgressSpinner
+  ],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
+  providers: [{ provide: APP_SETTINGS, useValue: appSettings }]
 })
 export class AppComponent implements AfterViewInit {
   title$ = new Observable<void>((observer) => {
@@ -42,7 +42,7 @@ export class AppComponent implements AfterViewInit {
 
   title = 'Pippo';
 
-  constructor() {}
+  constructor() { }
 
   ngAfterViewInit(): void {
     this.title = this.settings.title;
