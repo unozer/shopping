@@ -10,7 +10,11 @@ module.exports = function (config) {
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
-      clearContext: false
+      clearContext: false,
+      jasmine: {
+        random: false
+      },
+      angularZoneless: true
     },
     coverageReporter: {
       dir: require('path').join(__dirname, './coverage'),
