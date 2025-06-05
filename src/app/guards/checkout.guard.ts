@@ -11,7 +11,7 @@ export const checkoutGuard: CanActivateFn = (route, state) => {
   if (cartService.cart) {
     const confirmation = dialog.open(
       CheckoutComponent,
-      { data: cartService.cart.products.length }
+      { data: cartService.cart()!.products.length }
     ).afterClosed();
     return confirmation;
   }

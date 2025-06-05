@@ -7,7 +7,7 @@
       <button 
       mat-button 
       routerLink="/cart"
-      [matBadge]="cartService.cart?.products?.length">
+      [matBadge]="cartService.cart()?.products?.length">
         Cart
       </button>
       <button mat-button routerLink="/user">My Profile</button>

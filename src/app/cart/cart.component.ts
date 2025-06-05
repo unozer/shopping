@@ -29,7 +29,7 @@ export class CartComponent implements OnInit {
 
   private getProducts() {
     this.producctService.getProducts().subscribe(products => {
-      this.cartService.cart?.products.forEach(cartProduct => {
+      this.cartService.cart()?.products.forEach(cartProduct => {
         const product = products.find(p => p.id === cartProduct.productId);
         if (product) {
           this.products.push(product);

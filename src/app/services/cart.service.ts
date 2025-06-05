@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Cart } from '../model/cart';
 import { APP_SETTINGS } from '../app.settings';
 import { HttpClient } from '@angular/common/http';
@@ -10,17 +10,28 @@ import { defer, map, Observable } from 'rxjs';
 export class CartService {
 
   private cartUrl = inject(APP_SETTINGS).apiUrl + '/carts';
-  cart: Cart | undefined;
+
+  cart = signal<Cart | undefined>(undefined);
+
+  //cart: Cart | undefined;
 
   constructor(private http: HttpClient) { }
 
-  addProduct(id: number) : Observable<Cart> {
+  addProduct(id: number): Observable<Cart> {
     const cartProduct = { productId: id, quantity: 1 };
 
     return defer(() => 
-      !this.cart 
+      !this.cart()
       ? this.http.post<Cart>(this.cartUrl, { products: [cartProduct] })
-      : this.http.put<Cart>(`${this.cartUrl}/${this.cart.id}`, { products: [...this.cart.products, cartProduct] })
-    ).pipe(map(cart => this.cart = cart)); 
+      : this.http.put<Cart>(
+          `${this.cartUrl}/${this.cart()!.id}`, 
+          { products: [...this.cart()!.products, cartProduct] }
+        )
+    ).pipe(
+      map(cart => {
+        this.cart.set(cart);
+        return cart;
+      })
+    );
   }
 }
