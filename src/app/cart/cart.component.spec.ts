@@ -5,6 +5,7 @@ import { ProductsService } from '../services/products.service';
 import { of } from 'rxjs';
 import { Product } from '../model/product';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { provideZoneChangeDetection } from '@angular/core';
 
 describe('CartComponent', () => {
   let component: CartComponent;
@@ -33,7 +34,8 @@ describe('CartComponent', () => {
       imports: [CartComponent, NoopAnimationsModule],
       providers: [
         { provide: CartService, useValue: cartServiceStub },
-        { provide: ProductsService, useValue: productsServiceStub }
+        { provide: ProductsService, useValue: productsServiceStub },
+        provideZoneChangeDetection({ runCoalescing: false })
       ]
     })
       .compileComponents();
